@@ -1,6 +1,6 @@
-module Trees2 (
+module Trees (
     Arbol (..),
-    creaVacio, estaVacio, anadir
+    creaVacio, estaVacio
 
     ) where
 
@@ -11,10 +11,33 @@ Define funciones adecuadas para crear un árbol vacío, para saber si un árbol
 está vacío, para añadir un elemento, para eliminarlo y para hacer recorridos
 en preOrden, inOrden y postOrden. -}
 
+{-data Ord a => Tree a = Empty | Node a (Tree a) (Tree a)
 
-data Arbol a = AVacio | Nodo a (Arbol a) (Arbol a) deriving(Show, Eq)
+createEmptyTree :: Tree a
+createEmptyTree = Empty
 
-creaVacio :: Arbol a
+isEmpty :: Tree a -> Bool
+isEmpty Empty = True
+isEmpty _ = False
+
+addElement:: Ord a => Tree a -> a -> Tree a
+addElement Empty x = Node x Empty Empty
+addElement (Node x a b) y
+    | x < y         = Node x a (addElement b y)
+    | otherwise     = Node x (addElement a y) b-}
+
+
+{-deleteElement:: Ord a => Tree a -> a -> Tree a
+deleteElement Empty x = Empty
+deleteElement (Node x a b) y
+    | isElementinTheTree -}
+
+
+
+
+data Ord a => Arbol a = AVacio | Nodo a (Arbol a) (Arbol a)
+
+creaVacio :: Ord a => Arbol a
 creaVacio = AVacio
 
 estaVacio :: Ord a => Arbol a -> Bool
@@ -43,8 +66,8 @@ eliminar x (Nodo y iz dr)
   | otherwise    = Nodo menorDr iz (eliminar menorDr dr)
   where menorDr = menor dr
 
--- Función auxiliar que devuelve el menor elemento de
--- un árbol binario de búsqueda no vacío
+-- Funci�n auxiliar que devuelve el menor elemento de
+-- un �rbol binario de b�squeda no vac�o
 menor :: Ord a => Arbol a -> a
 menor (Nodo x iz dr)
   | estaVacio iz = x
@@ -63,6 +86,4 @@ inOrden (Nodo x iz dr) = inOrden iz ++ [x] ++ inOrden dr
 postOrden :: Ord a => Arbol a -> [a]
 postOrden AVacio = []
 postOrden (Nodo x iz dr) = postOrden iz ++ postOrden dr ++ [x]
-
-
 

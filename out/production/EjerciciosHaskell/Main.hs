@@ -1,8 +1,6 @@
 import Soluciones;
 --import Arboles;
 import Trees2;
-import Data.List
-import Data.Char
 
 main = do
 {-    print $ doble 3
@@ -71,16 +69,12 @@ main = do
     let  arbolito :: Arbol Int
          arbolito = creaVacio
     print $ arbolito
-    print $ estaVacio arbolito
+    print $ estaVacio arbolito-}
 
     print "Power Set"
     print $ powerset [1]
     print $ map (2:) [[],[1]]
-    print $ powerset [1..3]-}
-
-
-
-
+    print $ powerset [1..3]
 
 
 
